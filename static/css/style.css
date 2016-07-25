@@ -1,0 +1,26 @@
+body{
+	background-color: #f0f0f0;
+}
+a {
+	color : #666;
+}
+.dropdown-menu{
+    padding: 0;
+    min-width:100%;
+}
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+.dropdown-menu>li>a{
+    padding: 10px 16px;
+}
+.required{
+	font-weight: bold;
+	font-size: 14px;
+	color: red;
+}
+.book-description, .book-caption, .book-time{
+	white-space: nowrap; 
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head lang="en">
+    <% include head.ejs %>
+</head>    
+<body>
+	<% include navbar.ejs %>
+	<div class="container" style="margin-top: 86px">
+		<div class="row">
+			<h1 class="col-md-6 col-md-offset-6 text-center">
+				《<%- book.caption %>》
+				<small class="h5">创建时间: <%- (book.time.create).toDateString() %></small>
+			</h1>
+		</div>
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading text-center"><%- chapter.title %></div>
+				<div class="panel-body">
+					<%- chapter.text %>
+				</div>
+				<!-- <div class="panel-footer">
+					<nav>
+					    <ul class="pager">
+						    <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> 上一章</a></li>
+						    <li class="next"><a href="#">下一章 <span aria-hidden="true">&rarr;</span></a></li>
+					    </ul>
+					</nav>
+				</div> -->
+			</div>
+		</div>
+	</div>
+</body>
+</html>

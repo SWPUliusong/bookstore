@@ -1,0 +1,25 @@
+{
+  "name": "bookstore",
+  "version": "1.0.0",
+  "description": "a simple bookstore web application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ls",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.1",
+    "body-parser": "^1.15.1",
+    "connect-mongo": "^1.2.0",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.4.2",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "frouter": "^0.1.1",
+    "markdown-it": "^7.0.0",
+    "mongoose": "^4.4.19",
+    "multer": "^1.1.0",
+    "session": "^0.1.0"
+  }
+}

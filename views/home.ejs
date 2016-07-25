@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head lang="en">
+    <% include head.ejs %>
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+</head>    
+<body>
+
+    <% include navbar.ejs %>
+
+    <div class="container" style="margin-top: 86px">
+
+        <div class="row">
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">全部书籍</div>
+                    <div class="panel-body" style="padding: 0">
+                        <% if(books) { %>
+                            <% books.forEach(function(book) { %>
+                            <a class="text-center book" href="/book/<%- book._id %>" target="_blank">
+                                    <div class="col-md-1">
+                                        <img class="img-responsive" src="/<%- book.author && book.author.avatar %>" alt="<%- book.author && book.author.name %>" title="作者:<%- book.author && book.author.name %>">
+                                    </div>
+                                    <div class="col-md-2"><%- book.caption %></div>
+                                    <div class="col-md-1">
+                                        <span class="btn btn-sm btn-success"><%- book.type %></span>
+                                    </div>
+                                    <div class="col-md-6 book-description"><%- book.description||'无简介' %></div>
+                                    <div class="col-md-2 book-time"><%- formatTime(book.time.create) %></div>
+                            </a>
+                            <hr />
+                            <% }) %>
+                        <% } else { %>
+                            <div class="row text-center lead">暂无此类型书籍</div>
+                        <% } %>
+                    </div>
+                    <div class="panel-footer">
+                        <ul class="pagination">
+                            <li>
+                                <a href="/"><span aria-hidden="true">&laquo;</span></a>
+                            </li>
+                            <% for(var i = 1; i <= count; i++) { %>
+                                <li>
+                                    <a href="/page/<%= i %>"><%= i %></a>
+                                </li>
+                            <% } %>
+                            <li>
+                                <a href="/page/<%= count %>"><span aria-hidden="true">&raquo;</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">最近更新</div>
+                    <div class="panel-body">
+                        <% if(recent) { %>
+                            <% recent.forEach(function(book) { %>
+                            <a class="book" href="/book/<%- book._id %>" target="_blank" title="<%- book.caption %>">
+                                <div class="col-md-5 text-left book-caption"><%- book.caption %></div>
+                                <div class="col-md-7 text-right book-time"><%- formatTime(book.time.update) %></div>
+                                
+                            </a>
+                            <hr />
+                            <% }) %>
+                        <% } else { %>
+                            <div class="row text-center lead">暂无书籍更新</div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script>
+        console.log(<%- JSON.stringify(books) %>)
+    </script>
+</body>
+
+</html>

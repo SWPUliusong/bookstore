@@ -1,0 +1,21 @@
+{
+  "name": "bookstore",
+  "description": "a simple bookstore web application",
+  "main": "index.js",
+  "authors": [
+    "ls"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "static/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

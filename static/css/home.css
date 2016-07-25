@@ -1,0 +1,19 @@
+.book{
+	padding: 12px 0;
+	display:block;      
+	vertical-align:middle;   
+}
+.book:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.book:hover{
+	background-color: #dfdfdf;
+}
+hr{
+	margin: 0;
+}
+.book .btn{
+	padding: 0;
+}
