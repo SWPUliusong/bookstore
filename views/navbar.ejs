@@ -3,17 +3,12 @@
         <div class="navbar-header">
             <a href="/" title="返回主页" class="navbar-brand">BookStore</a>
         </div>
-        <% if(user) { %>
+        <% if (user) { %>
         <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-                <a href="#" data-toggle="dropdown">
-                    欢迎你: <%- user.name %> <!--<img class="img-rounded" src="<%- user.avatar %>" title="<%- user.name %>" alt="<%- user.name %>"/>-->
+            <li>
+                <a href="/user/<%= user._id %>/info">
+                    欢迎你: <%- user.name %>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-left">
-                    <li><a href="/addbook.html" class="text-center">发布新书</a></li>
-                    <li><a href="/user/<%= user._id %>/books" class="text-center">我的书籍</a></li>
-                    <!-- <li><a href="/user/<%= user._id %>" class="text-center">个人信息</a></li> -->
-                </ul>
             </li>
             <li>
                 <a type="button" title="注销登录" href="/logout">

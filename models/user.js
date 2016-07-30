@@ -4,7 +4,7 @@ var Schema=mongoose.Schema;
 var User = new Schema({
     name : {
     	type : String,
-    	required : true
+    	default : "匿名用户"
     },
     avatar : {
     	type : String,
@@ -18,6 +18,10 @@ var User = new Schema({
         type : String,
         required : true
     },
+    create_at : {
+        type : Date,
+        default: Date.now()
+    }
 });
 
 

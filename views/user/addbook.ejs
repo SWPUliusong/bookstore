@@ -1,0 +1,67 @@
+<div class="panel panel-default">
+    <div class="panel-heading">发布新书(<span class="required">*</span>为必填)</div>
+    <div class="panel-body">
+        <form method="post" action="/user/<%= user._id %>/books" id="newBook" class="form-horizontal" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="control-label col-md-2">书籍名称<span class="required"> *</span></label>
+                <div class="col-md-9">
+                    <input required class="form-control" type="text" name="caption"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">书籍类型<span class="required"> *</span></label>
+                <div class="col-md-9">
+                    <select required name="type" class="form-control">
+                        <option value="前端">前端</option>
+                        <option value="后端">后端</option>
+                        <option value="算法">算法</option>
+                        <option value="数据库">数据库</option>
+                        <option value="操作系统">操作系统</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">封面图</label>
+                <div class="col-md-9">
+                    <input name="coverImg" class="form-control" type="file"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">书籍简介</label>
+                <div class="col-md-9">
+                    <textarea name="description" class="form-control" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-6 text-center">
+                    <input class="btn btn-warning" type="reset" value="重置"/>
+                </div>
+                <div class="col-xs-6 text-center">
+                    <input class="btn btn-primary" type="submit" value="提交"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<button id="showModal" data-toggle="modal" data-target="#isRedirect" class="btn btn-primary" style="visibility: hidden;">发布成功</button>
+<div id="isRedirect" class="modal fade" role="modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <h3 class="modal-title">发布书籍成功</h3>
+            </div>
+            <div class="modal-body">
+                <p class="lead">是否立即前往我的书籍页面查看并添加章节?</p>
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-6 text-center">
+                    <button class="btn btn-warning" data-dismiss="modal">继续发布书籍</button>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <button id="back" class="btn btn-success" data-dismiss="modal">查看我的书籍</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,10 +4,7 @@ var ObjectId = Schema.ObjectId
 
 var Comment = new Schema({
 	bookId : {type: ObjectId, required: true},
-	user : {
-		name : {type: String, required: true},
-		avatar : {type: String, required: true}
-	},
+	criticId : {type: ObjectId, required: true},
 	content : {type: String, required: true},
 	create_at : {type: Date, default: Date.now()}
 })

@@ -4,7 +4,7 @@ body{
 a {
 	color : #666;
 }
-.dropdown-menu{
+/* .dropdown-menu{
     padding: 0;
     min-width:100%;
 }
@@ -13,14 +13,17 @@ a {
 }
 .dropdown-menu>li>a{
     padding: 10px 16px;
-}
+} */
 .required{
 	font-weight: bold;
 	font-size: 14px;
 	color: red;
 }
-.book-description, .book-caption, .book-time{
+.book-description, .book-caption, .book-time, .book-caption{
 	white-space: nowrap; 
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+.comment-item {
+	margin-bottom: 10px;
 }

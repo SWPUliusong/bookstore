@@ -1,4 +1,6 @@
 var Book = require(process.cwd() + "/lib").Book
+var User = require(process.cwd() + "/lib").User
+var filter = require(process.cwd() + "/filter")
 //文件解析
 var multer = require("multer");
 var storage = multer.diskStorage({
@@ -10,31 +12,44 @@ var storage = multer.diskStorage({
     }
 })
 var upload = multer({storage:storage})
-
-//获取用户所有书籍
-exports.get = function (req, res) {
+var url = require("url")
+//分情况获取用户所有书籍
+exports.get = [function(req, res, next){
     var user = req.session._user
     var id = req.params.id
-    if (user) {
-		if (user._id === id) {
-            Book.fetchByAuthorId(id, function(err,data) {
-                if (err) console.log(err)
+
+    if (user._id == id && req.query.self) {
+        Book.fetchByAuthorId(id)
+            .then(function(data) {
                 var books = data.length > 0 ? data : null
                 res.status(200)
-                    .render("mybooks",{
+                    .render("user/mybooks", {
                         user : user,
                         books : books
                     })
-            })
-        }
-        else {
-            res.status(403).send("你没有权限")
-        }
-	}
-    else {
-        res.status(401).redirect("/login.html")
+                })
     }
-}
+    else {
+        next()
+    }
+}, function (req, res) {
+    var user = req.session._user
+    var id = req.params.id
+    var opt = {user: user}
+    Book.fetchByAuthorId(id)
+        .then(function(data) {
+            opt.books = data.length > 0 ? data : null
+            return User.findById(id)
+        })
+        .then(function(data) {
+            opt.author = data
+            res.status(200)
+                .render("userbooks", opt)
+        })
+        .catch(function(err) {
+            res.status(500).json(err)
+        })
+}]
 
 //用户添加书籍
 exports.post = [upload.single("coverImg"), function (req,res) {
@@ -42,11 +57,14 @@ exports.post = [upload.single("coverImg"), function (req,res) {
     if (user) {
         var book = req.body
         book.authorId = user._id
-        book.coverImg = req.file && req.file.path.split("static\\")[1]
-        Book.createBook(book, function(err, book) {
-            if (err) res.status(403).json(err)
-            else res.status(200).json(user)
-        })
+        book.coverImg = req.file && filter.formatPath(req.file.path)
+        Book.createBook(book)
+            .then(function(data) {
+                res.status(200).json(user)
+            })
+            .catch(function(err) {
+                res.status(403).json(err)
+            })
     }
     else {
         res.status(401).redirect("/login.html")

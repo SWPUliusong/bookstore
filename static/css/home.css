@@ -1,14 +1,14 @@
-.book{
+.book, .recent{
 	padding: 12px 0;
 	display:block;      
 	vertical-align:middle;   
 }
-.book:after{
+.book:after, .recent:after{
 	content: "";
 	display: block;
 	clear: both;
 }
-.book:hover{
+.book:hover, .recent:hover{
 	background-color: #dfdfdf;
 }
 hr{
@@ -16,4 +16,7 @@ hr{
 }
 .book .btn{
 	padding: 0;
+}
+.book-avatar a {
+	display: block;
 }

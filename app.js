@@ -13,7 +13,7 @@ var frouter = require("frouter")   //文件路径即路由
 
 
 app.locals = filter    //为ejs设置全局属性
-app.set("views",__dirname + "/views")   //设置模板根路径
+app.set("views", __dirname + "/views")   //设置模板根路径
 app.set("view engine", "ejs")   //设置模板引擎
 app.use(bodyparser.json())  //调用body-parser解析json数据
 app.use(bodyparser.urlencoded({extended:false}))    //调用body-parser解析表单数据

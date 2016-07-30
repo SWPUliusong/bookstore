@@ -13,8 +13,8 @@
 			<div class="col-md-6 lead">
 				<div class="row"><strong>书名： </strong><%- book.caption %></div>
 				<div class="row"><strong>类型： </strong><%- book.type %></div>
-				<div class="row"><strong>作者： </strong><%- book.author||'未命名' %></div>
-				<div class="row"><strong>最近更新： </strong><%- (book.time.update).toDateString() %></div>
+				<div class="row"><strong>作者： <a href="/user/<%= author._id %>/books"></strong><%- author.name %></div></a>
+				<div class="row"><strong>最近更新： </strong><%- formatTime(book.time.update) %></div>
 				<div class="row"><strong>简介： </strong><%- book.description||'无简介' %></div>
 			</div>
 		</div>
@@ -54,12 +54,16 @@
 				<% if(comments) { %>
                     <% comments.forEach(function(comment, index) { %>
                     <div class="row comment-item">
-						<div class="col-sm-1">
-							<img title="<%- comment.user.name %>" class="img-responsive" src="/<%- comment.user.avatar %>" alt="<%- comment.user.name %>">
+						<div data-critic="<%= comment.criticId %>" class="col-sm-1 critic-avatar">
+							
+
 						</div>
 						<div class="col-sm-10">
 							<div class="row">
-								<div class="col-sm-4 text-primary"><%- comment.user.name %> <%- comments.length-index %>楼</div>
+								<div class="col-sm-6 text-primary">
+									<span class="critic-name"></span> <%- comments.length-index %>楼 发布于:
+									<span class="critic-time"><%- formatTime(comment.create_at) %></span>
+								</div>
 							</div>
 							<div class="row">
 								<%- comment.content %>
