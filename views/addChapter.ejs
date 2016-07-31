@@ -23,17 +23,24 @@
             <div class="panel panel-default">
                 <div class="panel-heading">新增章节(<span class="required">*</span>为必填)</div>
                 <div class="panel-body">
+                <div class="row col-sm-5" style="padding: 0 30px 0 10px">
+                    <h3 class="text-danger" style="border-bottom: 1px solid #ddd;">预览</h3>
+                    <p id="preview">
+                        
+                    </p>
+                </div>
+                <div class="row col-sm-7" style="border-left: 1px solid #ddd;">
                     <form action="/book/<%= book._id %>/chapter" id="addChapter" class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-md-1">章节名<span class="required">*</span></label>
-                            <div class="col-md-11">
+                            <label class="control-label col-md-2">章节名<span class="required">*</span></label>
+                            <div class="col-md-10">
                                 <input required class="form-control" type="text" name="title"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-1">内容<span class="required">*</span></label>
-                            <div class="col-md-11">
-                                <textarea required name="text" class="form-control" rows="16"></textarea>
+                            <label class="control-label col-md-2">内容<span class="required">*</span></label>
+                            <div class="col-md-10">
+                                <textarea id="chapter" required name="text" class="form-control" rows="20"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -45,6 +52,7 @@
                             </div>
                         </div>
                     </form>
+                    </div>
                 </div>
             </div>
 
