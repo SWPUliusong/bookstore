@@ -19,7 +19,7 @@
                             <% books.forEach(function(book) { %>
                             <a data-author="<%- book.authorId %>" class="text-center book" href="/book/<%- book._id %>" target="_blank">
                                     <div class="col-md-1 book-avatar"></div>
-                                    <div class="col-md-2"><%- book.caption %></div>
+                                    <div class="col-md-2 book-caption"><%- book.caption %></div>
                                     <div class="col-md-1">
                                         <span class="btn btn-sm btn-success"><%- book.type %></span>
                                     </div>
