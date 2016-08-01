@@ -27,3 +27,18 @@ a {
 .comment-item {
 	margin-bottom: 10px;
 }
+
+.avatar{
+	position: relative;
+}
+.avatar img{
+	position: absolute;
+	height: 120px;
+	width: 120px;
+	border-radius: 50%;
+	top: -60px;
+	left: -60px;
+}
+.avatar .lead {
+	padding-left: 60px;
+}
