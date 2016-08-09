@@ -37,9 +37,19 @@ app.use(frouter(app, "./routes"))
 
 
 app.use(function(req, res, next) {
-    res.status(404).render("error",{user: req.session._user})
+  var err = new Error("Not Find")
+  err.status = 404
+  next(err)
+})
+
+app.use(function(err, req, res, next) {
+  err.status = err.status || 500
+  res.status(err.status).render("error", {
+    user: req.session._user,
+    error: err
+  })
 })
 
 app.listen(port, function() {
-    console.log("server running at "+port+" port")
+  console.log("server is running at "+port+" port")
 })

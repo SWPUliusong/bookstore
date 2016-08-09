@@ -11,7 +11,7 @@ $(function() {
 				window.location.href = "/"
 			},
 			error : function() {
-				$(that).trigger("reset")
+				$("#password").val("")
 				alert("账号密码不匹配")
 			}
 		})

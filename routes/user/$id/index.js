@@ -16,18 +16,19 @@ var storage = multer.diskStorage({
 var upload = multer({storage:storage})
 
 
-exports.get = function(req, res) {
+exports.get = function(req, res, next) {
 	var id = req.params.id
 	User.findById(id)
 		.then(function(data) {
 			res.status(200).json(data)
 		})
 		.catch(function(err) {
-			res.status(404).json(null)
+			console.log(err)
+			next(err)
 		})
 }
 
-exports.post = [upload.single("avatar"), checkNotLogin, function(req, res) {
+exports.post = [upload.single("avatar"), checkNotLogin, function(req, res, next) {
 	var user = req.session._user
 	var avatar = filter.formatPath(req.file.path)
 	User.findById(user._id)
@@ -35,14 +36,14 @@ exports.post = [upload.single("avatar"), checkNotLogin, function(req, res) {
 			if (data.avatar !== "img/avatar.png") {
 				fs.unlink(filter.comcatPath(data.avatar))
 			}
-			return User.modifyAvatarById(user._id, avatar)
+			return User.modifyById(user._id, {avatar: avatar})
 		})
 		.then(function(data) {
-			req.session._user.avatar = data
+			req.session._user.avatar = data.avatar
 			res.status(200).send(data)
 		})
 		.catch(function(err) {
 			console.log(err)
-			res.status(500).json(null)
+			next(err)
 		})
 }]

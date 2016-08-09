@@ -32,7 +32,7 @@ exports.get = [function(req, res, next){
     else {
         next()
     }
-}, function (req, res) {
+}, function (req, res, next) {
     var user = req.session._user
     var id = req.params.id
     var opt = {user: user}
@@ -47,12 +47,13 @@ exports.get = [function(req, res, next){
                 .render("userbooks", opt)
         })
         .catch(function(err) {
-            res.status(500).json(err)
+            console.log(err)
+            next(err)
         })
 }]
 
 //用户添加书籍
-exports.post = [upload.single("coverImg"), function (req,res) {
+exports.post = [upload.single("coverImg"), function (req,res, next) {
     var user = req.session._user
     if (user) {
         var book = req.body
@@ -63,7 +64,8 @@ exports.post = [upload.single("coverImg"), function (req,res) {
                 res.status(200).json(user)
             })
             .catch(function(err) {
-                res.status(403).json(err)
+                console.log(err)
+                next(err)
             })
     }
     else {

@@ -61,7 +61,7 @@ $(function(){
 			type: "POST",
 			data: new FormData($("#avatar-upload")[0]),
 			contentType: false,
-			processData: false,
+			processData: false
 		}).done(function(data) {
 			console.log(data)
 			$("#close").trigger("click")

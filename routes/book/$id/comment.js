@@ -3,7 +3,7 @@ var User = require(process.cwd() + "/lib").User
 var filter = require(process.cwd() + "/filter")
 var checkNotLogin = require(process.cwd() + "/validate").checkNotLogin
 //增加评论
-exports.post = [checkNotLogin, function (req, res) {
+exports.post = [checkNotLogin, function (req, res, next) {
     var user = req.session._user
     var book_id = req.params.id
     var opt = {}
@@ -25,11 +25,11 @@ exports.post = [checkNotLogin, function (req, res) {
         })
         .catch(function(err) {
             console.log(err)
-            res.status(500).json(err)
+            next(err)
         })
 }]
 
-exports.get = function(req, res) {
+exports.get = function(req, res, next) {
     var book_id = req.params.id
     Comment.getByBookId(book_id)
         .then(function(data) {
@@ -37,6 +37,6 @@ exports.get = function(req, res) {
         })
         .catch(function(err) {
             console.log(err)
-            res.status(500).json(err)
+            next(err)
         })
 }

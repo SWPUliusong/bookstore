@@ -3,7 +3,7 @@ var Chapter = require(process.cwd() + "/lib").Chapter
 var checkNotLogin = require(process.cwd() + "/validate").checkNotLogin
 
 //获取章节内容
-exports.get = [checkNotLogin, function (req, res) {
+exports.get = [checkNotLogin, function (req, res, next) {
     var user = req.session._user
     var opt = {user: user}
     Book.fetchById(req.params.id)
@@ -17,7 +17,7 @@ exports.get = [checkNotLogin, function (req, res) {
         })
         .catch(function(err) {
             console.log(err)
-            res.status(404).json(err)
+            next(err)
         })
 }]
 
@@ -31,6 +31,7 @@ exports.post = [checkNotLogin, function (req, res) {
             res.status(200).json(user)
         })
         .catch(function(err) {
-            res.status(500).json(err)
+            console.log(err)
+            next(err)
         })
 }]

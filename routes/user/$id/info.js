@@ -1,7 +1,7 @@
 var Book = require(process.cwd() + "/lib").Book
 var checkNotLogin = require(process.cwd() + "/validate").checkNotLogin
 
-exports.get = [checkNotLogin, function(req, res) {
+exports.get = [checkNotLogin, function(req, res, next) {
 	var user = req.session._user
 	var opt = {user: user}
 	Book.countAll({authorId: user._id})
@@ -16,6 +16,6 @@ exports.get = [checkNotLogin, function(req, res) {
 		})
 		.catch(function(err) {
 			console.log(err)
-			res.status(404).json(err)
+			next(err)
 		})
 }]

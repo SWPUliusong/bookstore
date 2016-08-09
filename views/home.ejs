@@ -17,7 +17,7 @@
                     <div class="panel-body" style="padding: 0">
                         <% if(books) { %>
                             <% books.forEach(function(book) { %>
-                            <a data-author="<%- book.authorId %>" class="text-center book" href="/book/<%- book._id %>" target="_blank">
+                            <a data-author="<%- book.authorId %>" class="text-center book" href="/book/<%- book._id %>">
                                     <div class="col-md-1 book-avatar"></div>
                                     <div class="col-md-2 book-caption"><%- book.caption %></div>
                                     <div class="col-md-1">
@@ -82,12 +82,12 @@
         }
 
         $(".book").each(function(ind, elem) {
-            console.log($(elem).data("author"))
             $.get("/user/" + $(elem).data("author"), function(data) {
                 var img = tpl(data)
                 $(elem).find(".book-avatar").append(img)
             })
         })
+        
         $(".book-avatar").on("click", "a", function(e){
             e.stopPropagation()
         })

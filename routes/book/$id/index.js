@@ -5,7 +5,7 @@ var Comment = require(process.cwd() + "/lib").Comment
 var checkNotLogin = require(process.cwd() + "/validate").checkNotLogin
 
 //得到单本书
-exports.get = [checkNotLogin, function (req, res) {
+exports.get = [checkNotLogin, function (req, res, next) {
     var user = req.session._user
     var book_id = req.params.id
     var opt = {user: user}
@@ -28,7 +28,7 @@ exports.get = [checkNotLogin, function (req, res) {
         })
         .catch(function(err) {
             console.log(err)
-            res.status(404).render("error", opt)
+            next(err)
         })
 }]
 
