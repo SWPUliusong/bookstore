@@ -1,11 +1,8 @@
 $(function(){
-	function handler(cxt, data) {
-		cxt.addClass("active").siblings().removeClass("active")
-		$(".user-content").html(data)
-	}
 
 	$("#mybooks, #addbook, #info").on("click", function(e) {
 		var that = this
+		location.hash = that.id
 		$.get($(this).attr("href"), {self: true}, function(data) {
 			handler($(that), data)
 		})
@@ -19,7 +16,7 @@ $(function(){
                 url : $(that).attr("action"),
                 type : "delete",
                 success : function() {
-                    $(that).parents(".col-md-3").remove()
+                  $(that).parents(".col-md-3").remove()
                 }
             })
         }
@@ -69,3 +66,34 @@ $(function(){
 		})
 	})
 })
+
+
+//根据hash值保存状态
+window.onhashchange = function() {
+	var route = location.hash
+	switch(route) {
+		case '#info':
+			getPage(route)
+			break
+		case '#mybooks':
+			getPage(route)
+			break
+		case '#addbook':
+			getPage(route)
+			break
+		default:
+			getPage("#info")
+	}
+}
+
+function getPage(id) {
+	$.get($(id).attr("href"), {self: true}, function(data) {
+		handler($(id), data)
+	})
+}
+
+//添加数据
+function handler(cxt, data) {
+	cxt.addClass("active").siblings().removeClass("active")
+	$(".user-content").html(data)
+}

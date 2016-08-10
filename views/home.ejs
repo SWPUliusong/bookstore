@@ -57,7 +57,7 @@
                     <div class="panel-body">
                         <% if(recent) { %>
                             <% recent.forEach(function(book) { %>
-                            <a class="recent" href="/book/<%- book._id %>" target="_blank" title="<%- book.caption %>">
+                            <a class="recent" href="/book/<%- book._id %>" title="<%- book.caption %>">
                                 <div class="col-md-5 text-left book-caption"><%- book.caption %></div>
                                 <div class="col-md-7 text-right book-time"><%- formatTime(book.time.update) %></div>
                                 
@@ -77,7 +77,7 @@
     <script>
     $(function() {
         function tpl (obj) {
-            var str = '<a href="/user/' + obj._id +'/books" target="_blank"><img class="img-responsive" src="/' + obj.avatar + '" alt="' + obj.name + '" title="作者: ' + obj.name + '"></a>'
+            var str = '<a href="/user/' + obj._id +'/books"><img class="img-responsive" src="/' + obj.avatar + '" alt="' + obj.name + '" title="作者: ' + obj.name + '"></a>'
             return str
         }
 
