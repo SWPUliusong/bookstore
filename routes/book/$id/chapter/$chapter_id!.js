@@ -4,21 +4,17 @@ var checkNotLogin = require(process.cwd() + "/validate").checkNotLogin
 
 //获取章节内容
 exports.get = [checkNotLogin, function (req, res, next) {
-    var user = req.session._user
-    var opt = {user: user}
-    Book.fetchById(req.params.id)
-        .then(function(book) {
-            opt.book = book
-            return Chapter.fetchById(req.params.chapter_id)
-        })
-        .then(function(chapter) {
-            opt.chapter = chapter
-            res.status(200).render("chapter", opt)
-        })
-        .catch(function(err) {
-            console.log(err)
-            next(err)
-        })
+    Chapter.fetchOne({
+      bookId: req.params.id,
+      title: req.query.title
+    })
+    .then(function(chapter) {
+      res.status(200).render("book/chapter", {chapter: chapter})
+    })
+    .catch(function(err) {
+      consol.log(err)
+      next(err)
+    })
 }]
 
 //添加章节

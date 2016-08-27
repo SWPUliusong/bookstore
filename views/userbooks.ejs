@@ -17,7 +17,7 @@
                 <% if(books) { %>
                     <% books.forEach(function(book) { %>
                         <div class="col-md-3">
-                            <a href="/book/<%- book._id %>" style="text-decoration: none;">
+                            <a href="/book/<%- book._id %>/prefile" style="text-decoration: none;">
                                 <div class="thumbnail">
                                     <div class="coverImg" style="height: 250px">
                                         <img class="img-responsive" src="/<%= book.coverImg %>" alt="<%- book.caption %>"/>

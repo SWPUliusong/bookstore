@@ -1,28 +1,62 @@
 $(function(){
 
+	//获取html片段
+	function getPage() {
+		//添加数据修改样式
+		function handler(cxt, data) {
+			cxt.addClass("active").siblings().removeClass("active")
+			$(".user-content").html(data)
+		}
+
+		$.get($(location.hash).attr("href"), {self: true}, function(data) {
+			handler($(location.hash), data)
+		})
+	}
+
+
+	var hashMap = new HashMap()
+	hashMap.register({
+		url: "info",
+		default: true,
+		ctrl: getPage
+	})
+	.register({
+		url: "addbook",
+		ctrl: getPage
+	})
+	.register({
+		url: "mybooks",
+		ctrl: getPage
+	})
+	
+	//刷新时获取保存ajax状态
+	hashMap.run()
+
+	//点击触发hashchange
 	$("#mybooks, #addbook, #info").on("click", function(e) {
 		var that = this
-		location.hash = that.id
-		$.get($(this).attr("href"), {self: true}, function(data) {
-			handler($(that), data)
-		})
+		if (location.hash.substr(1) != that.id) {
+			location.hash = that.id
+		}
 		return false
 	})
 
+	//提交删除请求
 	$(".user-content").on("submit", ".delete", function(e) {
 		var that = this
-        if(confirm("确认删除")) {
-            $.ajax({
-                url : $(that).attr("action"),
-                type : "delete",
-                success : function() {
-                  $(that).parents(".col-md-3").remove()
-                }
-            })
-        }
-        return false
+      if(confirm("确认删除")) {
+          $.ajax({
+              url : $(that).attr("action"),
+              type : "delete",
+              success : function() {
+                $(that).parents(".col-md-3").remove()
+              }
+          })
+      }
+      return false
 	})
 
+	//提交新建书籍请求
 	$(".user-content").on("submit", "#newBook", function(e) {
 		e.preventDefault()
 		var that = this
@@ -45,12 +79,13 @@ $(function(){
 					})
 				})
 			},
-			error : function(xml, txtStatus, err) {
-				alert(JSON.stringify(err))
+			error : function(xml) {
+				alert(JSON.stringify(xml.responseText))
 			}
 		})
 	})
 
+	//修改头像
 	$("#user-avatar").on("change", function(e) {
 		var that = this
 		$.ajax({
@@ -66,34 +101,3 @@ $(function(){
 		})
 	})
 })
-
-
-//根据hash值保存状态
-window.onhashchange = function() {
-	var route = location.hash
-	switch(route) {
-		case '#info':
-			getPage(route)
-			break
-		case '#mybooks':
-			getPage(route)
-			break
-		case '#addbook':
-			getPage(route)
-			break
-		default:
-			getPage("#info")
-	}
-}
-
-function getPage(id) {
-	$.get($(id).attr("href"), {self: true}, function(data) {
-		handler($(id), data)
-	})
-}
-
-//添加数据
-function handler(cxt, data) {
-	cxt.addClass("active").siblings().removeClass("active")
-	$(".user-content").html(data)
-}

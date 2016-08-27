@@ -22,15 +22,6 @@ exports.get = function(req, res) {
     })
 }
 
-exports.options = function(req, res) {
-  res.set({
-    'Access-Control-Allow-Origin': 'http://localhost:8000',
-    'Access-Control-Allow-Methods': 'DELETE'
-  })
-
-  res.status(200).json(null)
-}
-
 exports.delete = function(req, res) {
   var skip = 0
   if (req.query.page) {

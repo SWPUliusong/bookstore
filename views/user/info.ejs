@@ -1,24 +1,34 @@
-<div class="col-sm-6 text-center">
-	<div class="info">
-		<h2>用户名</h2>
-		<p><%= user.name %></p>
+<!doctype html>
+<html lang="en">
+<head lang="en">
+    <% include ../head.ejs %>
+    <link rel="stylesheet" type="text/css" href="/css/user.css">
+</head>    
+<body>
+
+<div class="row">
+	<div class="col-sm-6 text-center">
+		<div class="info">
+			<h2>用户名</h2>
+			<p><%= user.name %></p>
+		</div>
 	</div>
-</div>
-<div class="col-sm-6 text-center">
-	<div class="info">
-		<h2>邮箱</h2>
-		<p><%= user.email %></p>
+	<div class="col-sm-6 text-center">
+		<div class="info">
+			<h2>邮箱</h2>
+			<p><%= user.email %></p>
+		</div>
 	</div>
-</div>
-<div class="col-sm-6 text-center">
-	<div class="info">
-		<h2>注册时间</h2>
-		<p><%- formatTime(user.create_at) %></p>
+	<div class="col-sm-6 text-center">
+		<div class="info">
+			<h2>注册时间</h2>
+			<p><%- formatTime(user.create_at) %></p>
+		</div>
 	</div>
-</div>
-<div class="col-sm-6 text-center">
-	<div class="info">
-		<h2>发表书籍</h2>
-		<p><%- count %></p>
+	<div class="col-sm-6 text-center">
+		<div class="info">
+			<h2>发表书籍</h2>
+			<p><%- count %></p>
+		</div>
 	</div>
 </div>

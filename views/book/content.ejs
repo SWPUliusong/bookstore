@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head lang="en">
+    <%- include ../head.ejs %>
+</head>    
+<body>
+	<%- include ../navbar.ejs %>
+	<dl class="title-list" data-bookurl="/book/<%= book._id %>/chapter/">
+		<dt class="text-center h3">目录</dt>
+		<% if (chapters.length > 0){ %>
+			<% chapters.forEach(function(chapter) { %>
+			<dt class="title-item"><a href="#<%= chapter.title %>"><%= chapter.title %></a></dt>
+			<% }) %>
+		<% } else { %>
+			<dt>无内容</dt>
+		<% } %>
+	</dl>
+	<div id="container">
+		<div class="row">
+			<h1 class="col-md-6 col-md-offset-6 text-center">
+				《<%= book.caption %>》
+				<small class="h5">创建时间: <%- formatTime(book.time.create) %></small>
+			</h1>
+		</div>
+		<% if (chapters.length == 0){ %>
+			<p class="lead text-center">该书籍暂未添加内容</p>
+		<% } %>
+		<div class="row" id="chapter-content">
+			
+		</div>
+	</div>
+	<script src="/js/book.js"></script>
+</body>
+</html>

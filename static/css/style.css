@@ -1,44 +1,67 @@
-body{
-	background-color: #f0f0f0;
+@charset 'utf-8';
+body {
+  background-color: #f0f0f0;
+  min-width: 1000px;
 }
 a {
-	color : #666;
+  color: #666;
 }
-/* .dropdown-menu{
-    padding: 0;
-    min-width:100%;
+.required {
+  font-weight: bold;
+  font-size: 14px;
+  color: red;
 }
-.dropdown:hover .dropdown-menu{
-    display: block;
-}
-.dropdown-menu>li>a{
-    padding: 10px 16px;
-} */
-.required{
-	font-weight: bold;
-	font-size: 14px;
-	color: red;
-}
-.book-description, .book-caption, .book-time, .book-caption{
-	white-space: nowrap; 
-	overflow: hidden;
-	text-overflow: ellipsis;
+.book-description,
+.book-caption,
+.book-time,
+.book-caption {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .comment-item {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
-
-.avatar{
-	position: relative;
+.avatar {
+  position: relative;
 }
-.avatar img{
-	position: absolute;
-	height: 120px;
-	width: 120px;
-	border-radius: 50%;
-	top: -60px;
-	left: -60px;
+.avatar img {
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  top: -60px;
+  left: -60px;
 }
 .avatar .lead {
-	padding-left: 60px;
+  padding-left: 60px;
+}
+#container {
+  margin-top: 86px;
+  width: 1000px;
+}
+#container > .lead {
+  border-top: 1px solid #999;
+}
+.title-list {
+  position: fixed;
+  top: 0;
+  left: -1px;
+  height: 100vh;
+  padding-top: 57px;
+  overflow: auto;
+  z-index: 1000;
+  border: 1px solid #ddd;
+  width: 200px;
+  text-align: left;
+  background-color: #fefefe;
+}
+.title-list .title-item {
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-width: 1px 0;
+  margin-top: -1px;
+}
+.title-list + #container {
+  margin-left: 240px;
 }

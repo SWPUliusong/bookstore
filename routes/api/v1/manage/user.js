@@ -33,12 +33,6 @@ exports.put = function(req, res) {
   })
 }
 
-exports.options = function(req, res) {
-  res.append("Access-Control-Allow-Origin", "http://localhost:8000")
-  res.append("Access-Control-Allow-Methods", "POST, PUT")
-  res.status(200).json(null)
-}
-
 exports.post = function(req, res) {
   res.append("Access-Control-Allow-Origin", "http://localhost:8000")
   var param = new Buffer('')

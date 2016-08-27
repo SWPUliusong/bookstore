@@ -1,7 +1,6 @@
-var User = require(process.cwd() + "/lib").User
+
 var Book = require(process.cwd() + "/lib").Book
 var Chapter = require(process.cwd() + "/lib").Chapter
-var Comment = require(process.cwd() + "/lib").Comment
 var checkNotLogin = require(process.cwd() + "/validate").checkNotLogin
 
 //得到单本书
@@ -12,19 +11,11 @@ exports.get = [checkNotLogin, function (req, res, next) {
     Book.fetchById(book_id)
         .then(function(book) {
             opt.book = book
-            return  User.findById(book.authorId)
-        })
-        .then(function(data) {
-            opt.author = data
             return Chapter.fetchByBook(book_id)
         })
         .then(function(data) {
-            opt.chapters = data.length > 0 ? data : null
-            return Comment.getByBookId(opt.book._id)
-        })
-        .then(function(data) {
-            opt.comments = data.length > 0 ? data : null
-            res.status(200).render("book", opt)
+            opt.chapters = data.reverse()
+            res.status(200).render("book/content", opt)
         })
         .catch(function(err) {
             console.log(err)

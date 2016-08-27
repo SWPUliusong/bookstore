@@ -17,7 +17,7 @@
                     <div class="panel-body" style="padding: 0">
                         <% if(books) { %>
                             <% books.forEach(function(book) { %>
-                            <a data-author="<%- book.authorId %>" class="text-center book" href="/book/<%- book._id %>">
+                            <a data-author="<%- book.authorId %>" class="text-center book" href="/book/<%- book._id %>/prefile">
                                     <div class="col-md-1 book-avatar"></div>
                                     <div class="col-md-2 book-caption"><%- book.caption %></div>
                                     <div class="col-md-1">
@@ -57,7 +57,7 @@
                     <div class="panel-body">
                         <% if(recent) { %>
                             <% recent.forEach(function(book) { %>
-                            <a class="recent" href="/book/<%- book._id %>" title="<%- book.caption %>">
+                            <a class="recent" href="/book/<%- book._id %>/prefile" title="<%- book.caption %>">
                                 <div class="col-md-5 text-left book-caption"><%- book.caption %></div>
                                 <div class="col-md-7 text-right book-time"><%- formatTime(book.time.update) %></div>
                                 

@@ -1,0 +1,76 @@
+@charset 'utf-8';
+
+
+@num: 60px;
+.text-ellipsis() {
+	white-space: nowrap; 
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+body{
+	background-color: #f0f0f0;
+	min-width: 1000px;
+}
+a {
+	color : #666;
+}
+.required{
+	font-weight: bold;
+	font-size: 14px;
+	color: red;
+}
+.book-description, .book-caption, .book-time, .book-caption{
+	.text-ellipsis()
+}
+.comment-item {
+	margin-bottom: 10px;
+}
+
+.avatar{
+	position: relative;
+
+	img{
+		position: absolute;
+		height: @num * 2;
+		width: @num * 2;
+		border-radius: 50%;
+		top: -@num;
+		left: -@num;
+	}
+	.lead {
+		padding-left: @num;
+	}
+}
+
+#container {
+	margin-top: 86px;
+	width: 1000px;
+	&>.lead {
+		border-top: 1px solid #999;
+	}
+}
+
+.title-list {
+	position: fixed;
+	top: 0;
+	left: -1px;
+	height: 100vh;
+	padding-top: 57px;
+	overflow: auto;
+	z-index: 1000;
+	border: 1px solid #ddd;
+	width: 200px;
+	text-align: left;
+	background-color: #fefefe;
+	.title-item {
+		padding: 5px 10px;
+		border: 1px solid #ddd;
+		border-width: 1px 0;
+		margin-top: -1px;
+	}
+	&+#container {
+		margin-left: 240px;
+		//margin-right: -10px;
+	}
+}
