@@ -32,16 +32,11 @@ $(function() {
                   this.selectionEnd = end + 4
                   e.preventDefault()
             }
-            if (e.which == 13) {
-                  parseMarkdown(val)
-            }
       })
 
       $("#chapter").on("keyup", function(e) {
-            if (e.which == 8) {
-                  var val = $(this).val()
-                  parseMarkdown(val)
-            }
+            var val = $(this).val()
+            parseMarkdown(val)
       })
 
       function parseMarkdown(str) {

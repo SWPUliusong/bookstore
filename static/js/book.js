@@ -13,7 +13,7 @@ $(function() {
     })
   })
 
-  hashMap.run()
+  hashMap.getState()
 
   function handler() {
     var title = location.hash.substr(1)

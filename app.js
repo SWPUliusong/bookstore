@@ -38,7 +38,7 @@ app.use(function(req, res, next) {
   if (req.method === "OPTIONS") {   
     res.set({
       'Access-Control-Allow-Origin': 'http://localhost:8000',
-      'Access-Control-Allow-Methods': 'DELETE,POST'
+      'Access-Control-Allow-Methods': 'DELETE,POST,PUT'
     })
     res.status(200).json(null)
   }

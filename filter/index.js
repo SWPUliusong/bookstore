@@ -32,6 +32,6 @@ exports.formatPath = function (p) {
 		.split("static/")[1]
 }
 
-exports.comcatPath = function (p) {
+exports.concatPath = function (p) {
 	return path.join("static/", p)
 }

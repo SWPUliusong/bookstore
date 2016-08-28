@@ -1,4 +1,6 @@
 $(function(){
+	
+	var hashMap = new HashMap()
 
 	//获取html片段
 	function getPage() {
@@ -7,14 +9,14 @@ $(function(){
 			cxt.addClass("active").siblings().removeClass("active")
 			$(".user-content").html(data)
 		}
-
-		$.get($(location.hash).attr("href"), {self: true}, function(data) {
-			handler($(location.hash), data)
+		var id = location.hash
+		$.get($(id).attr("href"), {self: true}, function(data) {
+			handler($(id), data)
 		})
 	}
 
 
-	var hashMap = new HashMap()
+	//注册路由
 	hashMap.register({
 		url: "info",
 		default: true,
@@ -30,7 +32,7 @@ $(function(){
 	})
 	
 	//刷新时获取保存ajax状态
-	hashMap.run()
+	hashMap.getState()
 
 	//点击触发hashchange
 	$("#mybooks, #addbook, #info").on("click", function(e) {
@@ -72,11 +74,9 @@ $(function(){
 				$(that).trigger("reset")
 				$("#showModal").click()
 				$("#back").on("click", function() {
-			  		$.get($("#mybooks").attr("href"), {self: true}, function(data) {
-						setTimeout(function(){
-							handler($("#mybooks"), data)
-						}, 400)
-					})
+					setTimeout(function(){
+						location.hash = "mybooks"
+					}, 400)
 				})
 			},
 			error : function(xml) {
@@ -90,14 +90,16 @@ $(function(){
 		var that = this
 		$.ajax({
 			url: $("#avatar-upload").attr("action"),
-			type: "POST",
+			type: "POST", 
 			data: new FormData($("#avatar-upload")[0]),
 			contentType: false,
 			processData: false
 		}).done(function(data) {
-			console.log(data)
-			$("#close").trigger("click")
-			$(".user-avatar").find("img").attr("src", "/" + data)
+			$(".modal").trigger("click")
+			$(".user-avatar").find("img").attr("src", "/" + data.avatar)
 		})
+		
+
+		return false
 	})
 })

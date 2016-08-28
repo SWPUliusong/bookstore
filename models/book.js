@@ -13,11 +13,11 @@ var Book = new Schema({
     time : {
     	create : {
     		type : Date,
-    		default : Date.now()
+    		default : Date.now
     	},
     	update : {
     		type : Date,
-    		default : Date.now()
+    		default : Date.now
     	}
     }
 });

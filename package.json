@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ls",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SWPUliusong/bookstore.git"
+  },
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.4.1",

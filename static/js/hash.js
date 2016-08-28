@@ -2,7 +2,7 @@ function HashMap() {
   this.default = ""
   this.hashes = []
   this.map = new Map()
-  window.onhashchange = this.run.bind(this)
+  window.onhashchange = this.getState.bind(this)
 }
 
 HashMap.prototype.register = function(obj) {
@@ -19,7 +19,7 @@ HashMap.prototype.register = function(obj) {
   return this
 }
 
-HashMap.prototype.run = function() {
+HashMap.prototype.getState = function() {
   var hash = location.hash.substr(1)
   if (this.hashes.indexOf(hash) > -1) {
     var ctrl = this.map.get(hash)
