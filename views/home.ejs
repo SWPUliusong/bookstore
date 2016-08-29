@@ -2,7 +2,6 @@
 <html lang="en">
 <head lang="en">
     <% include head.ejs %>
-    <link rel="stylesheet" type="text/css" href="/css/home.css">
 </head>    
 <body>
 
@@ -17,14 +16,14 @@
                     <div class="panel-body" style="padding: 0">
                         <% if(books) { %>
                             <% books.forEach(function(book) { %>
-                            <a data-author="<%- book.authorId %>" class="text-center book" href="/book/<%- book._id %>/prefile">
-                                    <div class="col-md-1 book-avatar"></div>
-                                    <div class="col-md-2 book-caption"><%- book.caption %></div>
-                                    <div class="col-md-1">
+                            <a data-author="<%- book.authorId %>" class="text-center book book-item" href="/book/<%- book._id %>/prefile">
+                                    <div class="col-sm-1 book-avatar"></div>
+                                    <div class="col-sm-2 book-caption"><%- book.caption %></div>
+                                    <div class="col-sm-1">
                                         <span class="btn btn-sm btn-success"><%- book.type %></span>
                                     </div>
-                                    <div class="col-md-6 book-description"><%- book.description||'无简介' %></div>
-                                    <div class="col-md-2 book-time"><%- formatTime(book.time.create) %></div>
+                                    <div class="col-sm-6 book-description hidden-xs"><%- book.description||'无简介' %></div>
+                                    <div class="col-sm-2 book-time"><%- formatTime(book.time.create) %></div>
                             </a>
                             <hr />
                             <% }) %>
@@ -57,9 +56,9 @@
                     <div class="panel-body">
                         <% if(recent) { %>
                             <% recent.forEach(function(book) { %>
-                            <a class="recent" href="/book/<%- book._id %>/prefile" title="<%- book.caption %>">
-                                <div class="col-md-5 text-left book-caption"><%- book.caption %></div>
-                                <div class="col-md-7 text-right book-time"><%- formatTime(book.time.update) %></div>
+                            <a class="book" href="/book/<%- book._id %>/prefile" title="<%- book.caption %>">
+                                <div class="col-sm-5 text-left book-caption"><%- book.caption %></div>
+                                <div class="col-sm-7 text-right book-time"><%- formatTime(book.time.update) %></div>
                                 
                             </a>
                             <hr />
@@ -81,7 +80,7 @@
             return str
         }
 
-        $(".book").each(function(ind, elem) {
+        $(".book-item").each(function(ind, elem) {
             $.get("/user/" + $(elem).data("author"), function(data) {
                 var img = tpl(data)
                 $(elem).find(".book-avatar").append(img)

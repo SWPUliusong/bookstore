@@ -1,14 +1,14 @@
-<div class="panel panel-default">
+<div class="panel panel-default private-book-list">
     <div class="panel-heading">所有书籍</div>
     <div class="panel-body">
         <% if(books) { %>
             <% books.forEach(function(book) { %>
-                <div class="col-md-3">
-                    <a href="/book/<%- book._id %>/prefile" style="text-decoration: none; display: block;">
+                <div class="col-md-4">
+                    <a href="/book/<%- book._id %>/prefile" style="text-decoration: none;">
                         <div class="thumbnail">
-                            <div class="coverImg" style="height: 200px">
-                                <img class="img-responsive" src="/<%= book.coverImg %>" alt="<%- book.caption %>"/>
-                            </div>
+                            
+                            <img src="/<%= book.coverImg %>" alt="<%- book.caption %>"/>
+                          
                             <h4 class="book-caption">《<%- book.caption %>》</h4>
                             <p class="book-description"><%- book.description || '无简介' %></p>
                             <div class="btn-group btn-group-justified">
@@ -18,7 +18,7 @@
                             </form>
                             </div>
                             <div class="btn-group">
-                            <form target="_blank" action="/book/<%- book._id %>/addchapter.html">
+                            <form action="/book/<%- book._id %>/addchapter.html">
                             <button class="btn btn-primary">添加章节</button>
                             </form>
                             </div>   

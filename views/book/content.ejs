@@ -5,11 +5,13 @@
 </head>    
 <body>
 	<%- include ../navbar.ejs %>
-	<dl class="title-list" data-bookurl="/book/<%= book._id %>/chapter/">
+	<dl class="title-list hidden-sm hidden-xs" data-bookurl="/book/<%= book._id %>/chapter/">
 		<dt class="text-center h3">目录</dt>
 		<% if (chapters.length > 0){ %>
 			<% chapters.forEach(function(chapter) { %>
-			<dt class="title-item"><a href="#<%= chapter.title %>"><%= chapter.title %></a></dt>
+			<dt class="title-item">
+				<a href="#<%= chapter.title %>"><%= chapter.title %></a>
+			</dt>
 			<% }) %>
 		<% } else { %>
 			<dt>无内容</dt>
@@ -25,9 +27,23 @@
 		<% if (chapters.length == 0){ %>
 			<p class="lead text-center">该书籍暂未添加内容</p>
 		<% } %>
-		<div class="row" id="chapter-content">
+		<div class="col-md-12" id="chapter-content">
 			
 		</div>
+		
+		<% if (chapters.length > 0){ %>
+		<nav>
+		  <ul class="pager">
+		    <li class="previous">
+		    	<a><span>&larr;</span> 上一章</a>
+		    </li>
+		    <li class="next">
+		    	<a>下一章 <span>&rarr;</span></a>
+		    </li>
+		  </ul>
+		</nav>
+		<% } %>
+
 	</div>
 	<script src="/js/book.js"></script>
 </body>

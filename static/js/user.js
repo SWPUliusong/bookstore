@@ -9,6 +9,7 @@ $(function(){
 			cxt.addClass("active").siblings().removeClass("active")
 			$(".user-content").html(data)
 		}
+
 		var id = location.hash
 		$.get($(id).attr("href"), {self: true}, function(data) {
 			handler($(id), data)
@@ -51,7 +52,7 @@ $(function(){
               url : $(that).attr("action"),
               type : "delete",
               success : function() {
-                $(that).parents(".col-md-3").remove()
+                $(that).parents(".col-md-4").remove()
               }
           })
       }
@@ -79,8 +80,9 @@ $(function(){
 					}, 400)
 				})
 			},
-			error : function(xml) {
-				alert(JSON.stringify(xml.responseText))
+			error : function(xml, textStatus) {
+				//alert(JSON.stringify(xml.responseText))
+				alert(textStatus)
 			}
 		})
 	})

@@ -1,19 +1,19 @@
 $(function() {
-  var hashMap = new HashMap()
+  var book_hashMap = new HashMap()
 
   $(".title-item").each(function(ind, elem) {
     var flag = false
     if (ind === 0) {
       flag = true
     }
-    hashMap.register({
+    book_hashMap.register({
       url: $(elem).text().trim(),
       default: flag,
       ctrl: handler
     })
   })
 
-  hashMap.getState()
+  book_hashMap.getState()
 
   function handler() {
     var title = location.hash.substr(1)
@@ -28,5 +28,13 @@ $(function() {
       alert(textStatus)
     })
   }
+
+  //上一页， 下一页
+  $(".previous a").click(function() {
+    book_hashMap.prev()
+  })
+  $(".next a").click(function() {
+    book_hashMap.next()
+  })
 
 })

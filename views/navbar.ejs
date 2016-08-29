@@ -1,21 +1,31 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
+            <% if (user) { %>
+            <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-user-info">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <% } %>
             <a href="/" title="返回主页" class="navbar-brand">BookStore</a>
         </div>
         <% if (user) { %>
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="/user/<%= user._id %>/info">
-                    欢迎你: <%- user.name %>
-                </a>
-            </li>
-            <li>
-                <a type="button" title="注销登录" href="/logout">
-                    <span class="glyphicon glyphicon-off"></span>
-                </a>
-            </li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbar-user-info">       
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/user/<%= user._id %>/info">
+                        欢迎你: <%- user.name %>
+                    </a>
+                </li>
+                <li>
+                    <a type="button" title="注销登录" href="/logout">
+                        <span class="glyphicon glyphicon-off"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
         <% } %>
     </div>
 </div>

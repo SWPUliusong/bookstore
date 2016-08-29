@@ -5,16 +5,26 @@
 </head>    
 <body>
     <% include navbar.ejs %>
-    <div class="container" style="margin-top: 86px">
+    <div id="personal-book" class="container" style="margin-top: 86px">
         <div class="row">
-            <div class="col-md-5 col-md-offset-1">
+            <div class="col-md-5 col-md-offset-1 book-poster">
                 <img class="img-responsive img-rounded" src="/<%= book.coverImg %>" alt="<%= book.caption %>">
             </div>
             <div class="col-md-5 lead">
-                <div class="row"><strong>书名： </strong><%- book.caption %></div>
-                <div class="row"><strong>类型： </strong><%- book.type %></div>
-                <div class="row"><strong>最近更新： </strong><%- (book.time.update).toDateString() %></div>
-                <div class="row"><strong>简介： </strong><%- book.description %></div>
+                <div>
+                    <strong>书名： </strong><%- book.caption %>
+                </div>
+                <div>
+                    <strong>类型： </strong><%- book.type %>
+                </div>
+                <div>
+                    <strong>创建时间： </strong>
+                    <%- (book.time.create).toDateString() %>
+                </div>
+                <div>
+                    <strong>简介： </strong>
+                    <%- book.description || '无简介' %>
+                </div>
             </div>
         </div>
         <hr />
@@ -23,13 +33,11 @@
             <div class="panel panel-default">
                 <div class="panel-heading">新增章节(<span class="required">*</span>为必填)</div>
                 <div class="panel-body">
-                <div class="row col-sm-5" style="padding: 0 35px 0 10px">
-                    <h3 class="text-danger" style="border-bottom: 1px solid #ddd;">预览</h3>
-                    <p id="preview" style="background-color: #f8f8f8; height: 500px;overflow: auto;">
-                        
-                    </p>
+                <div class="col-sm-5 hidden-xs hidden-sm preview-area">
+                    <h3 class="text-danger">预览</h3>
+                    <p id="preview"><!-- 编辑内容实时预览 --></p>
                 </div>
-                <div class="row col-sm-7" style="border-left: 1px solid #ddd;">
+                <div class="row col-md-7">
                     <form action="/book/<%= book._id %>/chapter" id="addChapter" class="form-horizontal">
                         <div class="form-group">
                             <label class="control-label col-md-2">章节名<span class="required">*</span></label>
@@ -40,7 +48,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">内容<span class="required">*</span></label>
                             <div class="col-md-10">
-                                <textarea id="chapter" required name="text" class="form-control" rows="20"></textarea>
+                                <textarea id="chapter" required name="text" class="form-control" rows="20" placeholder="支持markdown(github类型)"></textarea>
                             </div>
                         </div>
                         <div class="form-group">

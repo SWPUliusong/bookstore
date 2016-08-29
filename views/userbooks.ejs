@@ -7,7 +7,7 @@
 
     <% include navbar.ejs %>
 
-    <div class="container" style="margin-top: 150px">
+    <div class="container personal-book-list">
         <div class="panel panel-default">
             <div class="panel-heading avatar">
                 <span class="text-primary lead"><%= author.name %></span> 的所有书籍
@@ -16,12 +16,11 @@
             <div class="panel-body">
                 <% if(books) { %>
                     <% books.forEach(function(book) { %>
-                        <div class="col-md-3">
+                        <div class="col-md-3 col-sm-6">
                             <a href="/book/<%- book._id %>/prefile" style="text-decoration: none;">
                                 <div class="thumbnail">
-                                    <div class="coverImg" style="height: 250px">
-                                        <img class="img-responsive" src="/<%= book.coverImg %>" alt="<%- book.caption %>"/>
-                                    </div>
+                                    <img class="book-coverImg" src="/<%= book.coverImg %>" alt="<%- book.caption %>"/>
+                                   
                                     <h3>《<span class="book-caption"><%- book.caption %></span>》</h3>
                                     <p class="book-description"><%- book.description || '无简介' %></p>
                                 </div>

@@ -29,3 +29,27 @@ HashMap.prototype.getState = function() {
     location.hash = this.default
   }
 }
+
+HashMap.prototype.next = function() {
+  var hashes = this.hashes
+  var hash = location.hash.substr(1)
+  var index = hashes.indexOf(hash)
+
+  if (index < hashes.length - 1) {
+    location.hash = hashes[index + 1]
+  }
+
+  return this
+}
+
+HashMap.prototype.prev = function() {
+  var hashes = this.hashes
+  var hash = location.hash.substr(1)
+  var index = hashes.indexOf(hash)
+
+  if (index > 0) {
+    location.hash = hashes[index - 1]
+  }
+
+  return this
+}

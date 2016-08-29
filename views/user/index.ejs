@@ -2,35 +2,32 @@
 <html lang="en">
 <head lang="en">
     <% include ../head.ejs %>
-    <link rel="stylesheet" type="text/css" href="/css/user.css">
 </head>    
 <body>
 
     <% include ../navbar.ejs %>
 
     <div class="container" style="margin-top: 86px">
-	    <div class="row">
-	    	<div class="row">
-	    		<div class="col-sm-2 col-sm-offset-5">
-		    		<a href="#" class="user-avatar" data-toggle="modal" data-target="#change-avatar">
-	    				<img src="/<%= user.avatar %>" alt="<%= user.name %>">
-	    				<div class="wrap">更换头像</div>
-	    			</a>
-	    		</div>
+    	<div class="row">
+    		<div class="col-sm-2 col-sm-offset-5 col-xs-6 col-xs-offset-3">
+	    		<a href="#" class="user-avatar" data-toggle="modal" data-target="#change-avatar">
+    				<img src="/<%= user.avatar %>" alt="<%= user.name %>">
+    				<div class="wrap">更换头像</div>
+    			</a>
+    		</div>
+    	</div>
+    	<div class="row">
+	    	<div class="col-sm-2">
+	    		<div class="list-group">
+					<a id="info" href="/user/<%= user._id %>/info" class="list-group-item active">个人信息</a>
+					<a id="addbook" href="/addbook.html" class="list-group-item">发布新书</a>
+					<a id="mybooks" href="/user/<%= user._id %>/books" class="list-group-item">我的书籍</a>
+				</div>
 	    	</div>
-	    	<div class="row">
-		    	<div class="col-sm-2">
-		    		<div class="list-group">
-						<a id="info" href="/user/<%= user._id %>/info" class="list-group-item active">个人信息</a>
-						<a id="addbook" href="/addbook.html" class="list-group-item">发布新书</a>
-						<a id="mybooks" href="/user/<%= user._id %>/books" class="list-group-item">我的书籍</a>
-					</div>
-		    	</div>
-	    		<div class="col-sm-offset-1 col-sm-9 lead user-content">
-	    			<% include info %>
-	    		</div>
-	    	</div>
-	    </div>
+    		<div class="col-sm-offset-1 col-sm-9 lead user-content">
+    			<% include info %>
+    		</div>
+    	</div>
     </div>
     <div class="modal fade" id="change-avatar" tabindex="-1">
     	<div class="modal-dialog modal-sm">

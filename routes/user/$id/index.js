@@ -34,7 +34,7 @@ exports.post = [upload.single("avatar"), checkNotLogin, function(req, res, next)
 	User.findById(user._id)
 		.then(function(data) {
 			if (data.avatar !== "img/avatar.png") {
-				fs.unlink(filter.comcatPath(data.avatar))
+				fs.unlink(filter.concatPath(data.avatar))
 			}
 			return User.modifyById(user._id, {avatar: avatar})
 		})

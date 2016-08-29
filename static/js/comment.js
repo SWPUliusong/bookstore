@@ -12,14 +12,24 @@ $(function() {
 				},
 				success : function(data) {
 					$("#commentText").val("")
-					var sourElem = '<div class="row comment-item">' + 
-					'<div class="col-sm-1"><img title="' + data.critic.name +
-					'" class="img-responsive img-circle" src="/' + data.critic.avatar + 
-					'" alt="' + data.critic.name + '"></div>' + 
-					'<div class="col-sm-10"><div class="row">' + 
-					'<div class="col-sm-4 text-primary"><span class="critic-name">' + data.critic.name + 
-					'</span> ' + data.count +'楼  发布于:<span class="critic-time">' + data.create_at + 
-					'</div></div><div class="row">' + data.content + '</div></div></div>'
+					var sourElem =`<div class="comment-item">
+						<div data-critic="<%= comment.criticId %>" class="critic-avatar">
+							<img title="${data.critic.name}" class="img-circle" 
+							src="/${data.critic.avatar}" alt="${data.critic.name}">
+						</div>
+						<div class="comment-main">
+							<div class="text-primary comment-info">
+								<div class="critic-name">${data.critic.name}</div>
+								<div class="comment-time">
+									${data.count}楼 
+									<span class="critic-time hidden-xs">发布于: ${data.create_at}</span>
+								</div>
+							</div>
+							<div class="comment-content">
+								${data.content}
+							</div>
+						</div>
+            </div>`
 
 					$(".comment").prepend(sourElem).children(".noComment").remove()
 				}
@@ -29,8 +39,8 @@ $(function() {
 	})
 
 	function tpl (obj) {
-		var str = '<img title="' + obj.name + '" class="img-responsive img-circle"' + 
-			' src="/' + obj.avatar + '" alt="' + obj.name + '">'
+		var str = `<img title="${obj.name}" class="img-circle"
+		 src="/${obj.avatar}" alt="${obj.name}">`
 		return str
 	}
 
