@@ -10,8 +10,8 @@ $(function(){
 			$(".user-content").html(data)
 		}
 
-		var id = location.hash
-		$.get($(id).attr("href"), {self: true}, function(data) {
+		var id = location.hash + "-owner"
+		$.get($(id).data("uri"), {self: true}, function(data) {
 			handler($(id), data)
 		})
 	}
@@ -32,31 +32,20 @@ $(function(){
 		ctrl: getPage
 	})
 	
-	//刷新时获取保存ajax状态
-	hashMap.getState()
-
-	//点击触发hashchange
-	$("#mybooks, #addbook, #info").on("click", function(e) {
-		var that = this
-		if (location.hash.substr(1) != that.id) {
-			location.hash = that.id
-		}
-		return false
-	})
 
 	//提交删除请求
 	$(".user-content").on("submit", ".delete", function(e) {
 		var that = this
-      if(confirm("确认删除")) {
-          $.ajax({
-              url : $(that).attr("action"),
-              type : "delete",
-              success : function() {
-                $(that).parents(".col-md-4").remove()
-              }
-          })
-      }
-      return false
+    if(confirm("确认删除")) {
+        $.ajax({
+            url : $(that).attr("action"),
+            type : "delete",
+            success : function() {
+              $(that).parents(".col-md-4").remove()
+            }
+        })
+    }
+    return false
 	})
 
 	//提交新建书籍请求

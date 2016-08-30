@@ -13,8 +13,6 @@ $(function() {
     })
   })
 
-  book_hashMap.getState()
-
   function handler() {
     var title = location.hash.substr(1)
     $.ajax({

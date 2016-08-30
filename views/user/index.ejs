@@ -19,13 +19,13 @@
     	<div class="row">
 	    	<div class="col-sm-2">
 	    		<div class="list-group">
-					<a id="info" href="/user/<%= user._id %>/info" class="list-group-item active">个人信息</a>
-					<a id="addbook" href="/addbook.html" class="list-group-item">发布新书</a>
-					<a id="mybooks" href="/user/<%= user._id %>/books" class="list-group-item">我的书籍</a>
+					<a id="info-owner" href="#info" data-uri="/user/<%= user._id %>/info" class="list-group-item active">个人信息</a>
+					<a id="addbook-owner" href="#addbook" data-uri="/addbook.html" class="list-group-item">发布新书</a>
+					<a id="mybooks-owner" href="#mybooks" data-uri="/user/<%= user._id %>/books" class="list-group-item">我的书籍</a>
 				</div>
 	    	</div>
     		<div class="col-sm-offset-1 col-sm-9 lead user-content">
-    			<% include info %>
+    			
     		</div>
     	</div>
     </div>

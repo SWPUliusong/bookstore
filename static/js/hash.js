@@ -3,6 +3,7 @@ function HashMap() {
   this.hashes = []
   this.map = new Map()
   window.onhashchange = this.getState.bind(this)
+  window.onload = this.getState.bind(this)  //进入时获取保存的ajax状态
 }
 
 HashMap.prototype.register = function(obj) {
